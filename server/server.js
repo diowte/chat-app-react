@@ -12,10 +12,11 @@ app.use(express.json());
 const server = http.createServer(app);
 
 // ─── Socket.io ──────────────────────────────
-// CORS configuré pour PC (localhost) + réseau local (IP du PC)
+// CORS: autoriser le frontend deploye via CLIENT_URL (Render/Vercel)
 const io = new Server(server,
     { cors: { origin: process.env.CLIENT_URL || "*",
-// process.env.CLIENT_URL = variable d'environnement que vous définirez sur Railway // "*" = accepter toutes les origines (moins sécurisé mais plus simple pour débuter)
+// process.env.CLIENT_URL = URL frontend en production
+// "*" = accepter toutes les origines (moins securise, utile en dev)
       methods: ["GET", "POST"], }, });
 
 

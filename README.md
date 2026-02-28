@@ -47,46 +47,56 @@ Le client est sur `http://localhost:3000`.
 Le serveur ecoute sur `http://localhost:5000` (ou `PORT` si definie).
 
 ## Variables d'environnement
-### Frontend (client)
-- `REACT_APP_SERVER_URL`: URL du backend Socket.IO (ex: `https://chat-app-server.up.railway.app`)
+### Frontend (Vercel / React)
+- `REACT_APP_SERVER_URL`: URL publique du backend (Render)
+- Exemple: `https://chat-app-server.onrender.com`
 
-Le client utilise maintenant:
+Le client utilise:
 1. `REACT_APP_SERVER_URL` si definie
 2. sinon `http://localhost:5000`
 
-### Backend (server)
-- `PORT`: port fourni par Railway
-- `CLIENT_URL`: URL du frontend (ex: `https://chat-app-react.vercel.app`)
+### Backend (Render)
+- `PORT`: fourni automatiquement par Render
+- `CLIENT_URL`: URL du frontend Vercel (ex: `https://chat-app-react.vercel.app`)
 
-## Deploiement Backend sur Railway
-1. Pousse ton code sur GitHub (deja fait).
-2. Va sur Railway, `New Project` -> `Deploy from GitHub repo`.
-3. Selectionne `MouradIntellij/chat-app-React`.
-4. Dans les settings du service Railway:
+## Deploiement Backend sur Render
+### Option A (simple via interface)
+1. Va sur Render -> `New +` -> `Web Service`.
+2. Connecte le repo `MouradIntellij/chat-app-React`.
+3. Configure:
 - `Root Directory`: `server`
 - `Build Command`: `npm install`
 - `Start Command`: `npm start`
-5. Dans `Variables`, ajoute:
+- `Plan`: Free
+4. Dans `Environment Variables`, ajoute:
 - `CLIENT_URL=https://<ton-frontend-vercel>.vercel.app`
-6. Deploy, puis copie l'URL publique Railway (ex: `https://chat-app-server.up.railway.app`).
+5. Deploy et copie l'URL publique Render.
+
+### Option B (render.yaml deja fourni)
+Le fichier `render.yaml` est deja a la racine.
+Tu peux deployer en mode Blueprint depuis Render en important ce fichier.
+Il te restera a definir `CLIENT_URL` dans Render.
 
 ## Deploiement Frontend sur Vercel
-1. Va sur Vercel, `Add New...` -> `Project`.
+1. Va sur Vercel -> `Add New...` -> `Project`.
 2. Importe `MouradIntellij/chat-app-React`.
-3. Configure le projet:
+3. Configure:
 - `Root Directory`: `client`
-- Framework detecte: Create React App
 - Build command: `npm run build`
-- Output: `build`
-4. Ajoute la variable d'environnement Vercel:
-- `REACT_APP_SERVER_URL=https://<ton-backend-railway>.up.railway.app`
+- Output directory: `build`
+4. Ajoute la variable Vercel:
+- `REACT_APP_SERVER_URL=https://<ton-backend-render>.onrender.com`
 5. Deploy.
 
 ## Ordre conseille
-1. Deploy le backend Railway
-2. Recupere son URL
-3. Configure `REACT_APP_SERVER_URL` sur Vercel
-4. Redeploy frontend
+1. Deploy backend sur Render
+2. Recuperer son URL publique
+3. Configurer `REACT_APP_SERVER_URL` sur Vercel
+4. Redeployer frontend
+
+## Fichiers utiles
+- `client/.env.example` (exemple de variable frontend)
+- `render.yaml` (configuration Render optionnelle)
 
 ## GitHub
 Depot distant:
