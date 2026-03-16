@@ -605,3 +605,46 @@ body {
     font-size: 13px;
     padding: 16px 0;
 }
+.messageMeta {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.messageSeen {
+    font-size: 11px;
+    color: var(--wa-dark-green);
+    font-weight: 600;
+}
+
+.leaveBtn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.leaveBtn:hover {
+    background: #bb2d3b;
+}
+
+.activitySection {
+    margin-top: 22px;
+    padding-top: 14px;
+    border-top: 1px solid #2a3942;
+}
+
+.activityItem {
+    font-size: 13px;
+    color: #d1d7db;
+    line-height: 1.5;
+    padding: 8px 0;
+    border-bottom: 1px solid #2a3942;
+}
